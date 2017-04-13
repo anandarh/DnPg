@@ -7,186 +7,202 @@
     android:background="@color/colorBg"
     tools:context="com.anandarherdianto.dinaspangan.NitrogenActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp">
-
-        <RelativeLayout
+        android:layout_height="match_parent">
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:id="@+id/tvText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textSize="15sp"
-                android:text="Gambar Sampel"
-                android:textColor="#FFFFFF" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:layout_toLeftOf="@id/tvText"
-                android:background="#FF0000" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="16dp"
-                android:layout_toRightOf="@id/tvText"
-                android:background="#FF0000" />
-
-        </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_sawah"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
-            <android.support.percent.PercentRelativeLayout
-                android:id="@+id/frmImg1"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Gambar Sampel"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toLeftOf="@id/tvText"
+                    android:background="#FF0000" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_toRightOf="@id/tvText"
+                    android:background="#FF0000" />
+
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center_horizontal">
+                android:orientation="vertical">
+
+                <android.support.percent.PercentRelativeLayout
+                    android:id="@+id/frmImg1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal">
 
 
-                <ImageView
-                    android:id="@+id/imgNitrogen1"
-                    android:background="@drawable/border"
-                    android:cropToPadding="true"
-                    android:padding="2dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/leaves"
-                    app:layout_aspectRatio="100%"
-                    app:layout_widthPercent="25%" />
+                    <ImageView
+                        android:id="@+id/imgNitrogen1"
+                        android:background="@drawable/border"
+                        android:cropToPadding="true"
+                        android:padding="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_placeholder_analyzer"
+                        app:layout_aspectRatio="100%"
+                        app:layout_widthPercent="25%" />
 
-                <ImageView
-                    android:id="@+id/imgNitrogen2"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toEndOf="@+id/imgNitrogen1"
-                    android:layout_toRightOf="@+id/imgNitrogen1"
-                    android:background="@drawable/border"
-                    android:cropToPadding="true"
-                    android:padding="2dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_placeholder_analyzer"
-                    app:layout_aspectRatio="100%"
-                    app:layout_widthPercent="25%" />
+                    <ImageView
+                        android:id="@+id/imgNitrogen2"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toEndOf="@+id/imgNitrogen1"
+                        android:layout_toRightOf="@+id/imgNitrogen1"
+                        android:background="@drawable/border"
+                        android:cropToPadding="true"
+                        android:padding="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_placeholder_analyzer"
+                        app:layout_aspectRatio="100%"
+                        app:layout_widthPercent="25%" />
 
-                <ImageView
-                    android:id="@+id/imgNitrogen3"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toEndOf="@+id/imgNitrogen2"
-                    android:layout_toRightOf="@+id/imgNitrogen2"
-                    android:background="@drawable/border"
-                    android:cropToPadding="true"
-                    android:padding="2dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_placeholder_analyzer"
-                    app:layout_aspectRatio="100%"
-                    app:layout_widthPercent="25%" />
+                    <ImageView
+                        android:id="@+id/imgNitrogen3"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toEndOf="@+id/imgNitrogen2"
+                        android:layout_toRightOf="@+id/imgNitrogen2"
+                        android:background="@drawable/border"
+                        android:cropToPadding="true"
+                        android:padding="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_placeholder_analyzer"
+                        app:layout_aspectRatio="100%"
+                        app:layout_widthPercent="25%" />
 
 
-            </android.support.percent.PercentRelativeLayout>
+                </android.support.percent.PercentRelativeLayout>
 
-            <android.support.percent.PercentRelativeLayout
-                android:id="@+id/frmImg2"
+                <android.support.percent.PercentRelativeLayout
+                    android:id="@+id/frmImg2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal">
+
+
+                    <ImageView
+                        android:id="@+id/imgNitrogen4"
+                        android:background="@drawable/border"
+                        android:cropToPadding="true"
+                        android:padding="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_placeholder_analyzer"
+                        app:layout_aspectRatio="100%"
+                        app:layout_widthPercent="25%" />
+
+                    <ImageView
+                        android:id="@+id/imgNitrogen5"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toEndOf="@+id/imgNitrogen4"
+                        android:layout_toRightOf="@+id/imgNitrogen4"
+                        android:background="@drawable/border"
+                        android:cropToPadding="true"
+                        android:padding="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_placeholder_analyzer"
+                        app:layout_aspectRatio="100%"
+                        app:layout_widthPercent="25%" />
+
+                    <ImageView
+                        android:id="@+id/imgNitrogen6"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toEndOf="@+id/imgNitrogen5"
+                        android:layout_toRightOf="@+id/imgNitrogen5"
+                        android:background="@drawable/border"
+                        android:cropToPadding="true"
+                        android:padding="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_placeholder_analyzer"
+                        app:layout_aspectRatio="100%"
+                        app:layout_widthPercent="25%" />
+
+
+                </android.support.percent.PercentRelativeLayout>
+            </LinearLayout>
+
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_height="2dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:gravity="center_horizontal">
+                android:background="#FF0000" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/imgNitrogen4"
-                    android:background="@drawable/border"
-                    android:cropToPadding="true"
-                    android:padding="2dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_placeholder_analyzer"
-                    app:layout_aspectRatio="100%"
-                    app:layout_widthPercent="25%" />
+                <com.anandarherdianto.dinaspangan.utilitas.FButton
+                    android:id="@+id/btnProses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="20dp"
+                    android:drawableLeft="@drawable/ic_process_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:minHeight="50dp"
+                    android:minWidth="250dp"
+                    android:paddingLeft="80dp"
+                    android:paddingRight="70dp"
+                    android:text="Proses"
+                    android:textColor="@android:color/white"
+                    app:buttonColor="@color/colorPrimary"
+                    app:cornerRadius="10dp"
+                    app:shadowEnabled="true"
+                    app:shadowHeight="5dp" />
 
-                <ImageView
-                    android:id="@+id/imgNitrogen5"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toEndOf="@+id/imgNitrogen4"
-                    android:layout_toRightOf="@+id/imgNitrogen4"
-                    android:background="@drawable/border"
-                    android:cropToPadding="true"
-                    android:padding="2dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_placeholder_analyzer"
-                    app:layout_aspectRatio="100%"
-                    app:layout_widthPercent="25%" />
+            </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/imgNitrogen6"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toEndOf="@+id/imgNitrogen5"
-                    android:layout_toRightOf="@+id/imgNitrogen5"
-                    android:background="@drawable/border"
-                    android:cropToPadding="true"
-                    android:padding="2dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_placeholder_analyzer"
-                    app:layout_aspectRatio="100%"
-                    app:layout_widthPercent="25%" />
-
-
-            </android.support.percent.PercentRelativeLayout>
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#FF0000"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_weight="1"/>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <com.anandarherdianto.dinaspangan.utilitas.FButton
-                android:id="@+id/btnProses"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_process_black_24dp"
-                android:drawablePadding="10dp"
-                android:paddingLeft="80dp"
-                android:paddingRight="70dp"
-                android:minHeight="50dp"
-                android:minWidth="250dp"
-                android:text="Proses"
-                app:cornerRadius="10dp"
-                app:shadowEnabled="true"
-                app:shadowHeight="5dp"
-                android:textColor="@android:color/white"
-                android:layout_margin="20dp"
-                android:layout_centerInParent="true"
-                app:buttonColor="@color/colorPrimary"/>
-
-        </RelativeLayout>
-
-
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

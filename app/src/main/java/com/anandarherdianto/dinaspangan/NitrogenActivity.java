@@ -15,24 +15,26 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.anandarherdianto.dinaspangan.utilitas.NitrogenImageDialogBox;
+
 import java.io.File;
 
-public class NitrogenActivity extends AppCompatActivity {
+public class NitrogenActivity extends AppCompatActivity implements NitrogenImageDialogBox.MyInterface {
 
     private ImageView imgNitrogen1, imgNitrogen2, imgNitrogen3,
-                      imgNitrogen4, imgNitrogen5, imgNitrogen6;
+            imgNitrogen4, imgNitrogen5, imgNitrogen6;
 
     private Bitmap bmpNitrogen1, bmpNitrogen2, bmpNitrogen3,
-                   bmpNitrogen4, bmpNitrogen5, bmpNitrogen6, imgSrc;
+            bmpNitrogen4, bmpNitrogen5, bmpNitrogen6, imgSrc;
 
     private String image_name1, image_name2, image_name3,
-                   image_name4, image_name5, image_name6;
+            image_name4, image_name5, image_name6;
 
     private Uri file_uri1, file_uri2, file_uri3,
-                file_uri4, file_uri5, file_uri6;
+            file_uri4, file_uri5, file_uri6;
 
     private File file1, file2, file3,
-                 file4, file5, file6;
+            file4, file5, file6;
 
     static final int REQUEST_IMG_NITROGEN1 = 101;
     static final int REQUEST_IMG_NITROGEN2 = 102;
@@ -43,6 +45,7 @@ public class NitrogenActivity extends AppCompatActivity {
 
     private Button btnProses;
 
+    NitrogenImageDialogBox dialog;
 
 
     @Override
@@ -50,81 +53,71 @@ public class NitrogenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nitrogen);
 
-        imgNitrogen1 = (ImageView)findViewById(R.id.imgNitrogen1);
-        imgNitrogen2 = (ImageView)findViewById(R.id.imgNitrogen2);
-        imgNitrogen3 = (ImageView)findViewById(R.id.imgNitrogen3);
-        imgNitrogen4 = (ImageView)findViewById(R.id.imgNitrogen4);
-        imgNitrogen5 = (ImageView)findViewById(R.id.imgNitrogen5);
-        imgNitrogen6 = (ImageView)findViewById(R.id.imgNitrogen6);
+        imgNitrogen1 = (ImageView) findViewById(R.id.imgNitrogen1);
+        imgNitrogen2 = (ImageView) findViewById(R.id.imgNitrogen2);
+        imgNitrogen3 = (ImageView) findViewById(R.id.imgNitrogen3);
+        imgNitrogen4 = (ImageView) findViewById(R.id.imgNitrogen4);
+        imgNitrogen5 = (ImageView) findViewById(R.id.imgNitrogen5);
+        imgNitrogen6 = (ImageView) findViewById(R.id.imgNitrogen6);
 
-        btnProses = (Button)findViewById(R.id.btnProses);
+        btnProses = (Button) findViewById(R.id.btnProses);
+
+        dialog = new NitrogenImageDialogBox();
 
         imgNitrogen1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                getFileUri();
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, file_uri1);
-                startActivityForResult(intent, REQUEST_IMG_NITROGEN1);
+                dialog.setCode("get1");
+                dialog.show(getSupportFragmentManager(), "DialogImage");
             }
         });
 
         imgNitrogen2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                getFileUri();
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, file_uri2);
-                startActivityForResult(intent, REQUEST_IMG_NITROGEN2);
+                dialog.setCode("get2");
+                dialog.show(getSupportFragmentManager(), "DialogImage");
             }
         });
 
         imgNitrogen3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                getFileUri();
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, file_uri3);
-                startActivityForResult(intent, REQUEST_IMG_NITROGEN3);
+                dialog.setCode("get3");
+                dialog.show(getSupportFragmentManager(), "DialogImage");
             }
         });
 
         imgNitrogen4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                getFileUri();
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, file_uri4);
-                startActivityForResult(intent, REQUEST_IMG_NITROGEN4);
+                dialog.setCode("get4");
+                dialog.show(getSupportFragmentManager(), "DialogImage");
             }
         });
 
         imgNitrogen5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                getFileUri();
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, file_uri5);
-                startActivityForResult(intent, REQUEST_IMG_NITROGEN5);
+                dialog.setCode("get5");
+                dialog.show(getSupportFragmentManager(), "DialogImage");
             }
         });
 
         imgNitrogen6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                getFileUri();
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, file_uri6);
-                startActivityForResult(intent, REQUEST_IMG_NITROGEN6);
+                dialog.setCode("get6");
+                dialog.show(getSupportFragmentManager(), "DialogImage");
             }
         });
 
         btnProses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!Uri.EMPTY.equals(file_uri1)){
+                if (!Uri.EMPTY.equals(file_uri1)) {
                     getRGB();
-                }else {
+                } else {
                     Toast.makeText(getApplicationContext(),
                             "Ambil gambar dulu!", Toast.LENGTH_SHORT)
                             .show();
@@ -139,6 +132,51 @@ public class NitrogenActivity extends AppCompatActivity {
             finish();
         }
 
+    }
+
+
+    public void camera1() {
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        getFileUri();
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, file_uri1);
+        startActivityForResult(intent, REQUEST_IMG_NITROGEN1);
+
+    }
+
+    public void camera2() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        getFileUri();
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, file_uri2);
+        startActivityForResult(intent, REQUEST_IMG_NITROGEN2);
+    }
+
+    public void camera3() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        getFileUri();
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, file_uri3);
+        startActivityForResult(intent, REQUEST_IMG_NITROGEN3);
+    }
+
+    public void camera4() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        getFileUri();
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, file_uri4);
+        startActivityForResult(intent, REQUEST_IMG_NITROGEN4);
+    }
+
+    public void camera5() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        getFileUri();
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, file_uri5);
+        startActivityForResult(intent, REQUEST_IMG_NITROGEN5);
+    }
+
+    public void camera6() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        getFileUri();
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, file_uri6);
+        startActivityForResult(intent, REQUEST_IMG_NITROGEN6);
     }
 
     @Override
@@ -168,7 +206,6 @@ public class NitrogenActivity extends AppCompatActivity {
 
     private boolean isDeviceSupportCamera() {
         // this device has a camera
-// no camera on this device
         return getApplicationContext().getPackageManager().hasSystemFeature(
                 PackageManager.FEATURE_CAMERA);
     }
@@ -187,54 +224,54 @@ public class NitrogenActivity extends AppCompatActivity {
             mFolder.mkdir();
         }
 
-        file1 = new File(mFolder+File.separator+image_name1);
+        file1 = new File(mFolder + File.separator + image_name1);
         file_uri1 = Uri.fromFile(file1);
 
-        file2 = new File(mFolder+File.separator+image_name2);
+        file2 = new File(mFolder + File.separator + image_name2);
         file_uri2 = Uri.fromFile(file2);
 
-        file3 = new File(mFolder+File.separator+image_name3);
+        file3 = new File(mFolder + File.separator + image_name3);
         file_uri3 = Uri.fromFile(file3);
 
-        file4 = new File(mFolder+File.separator+image_name4);
+        file4 = new File(mFolder + File.separator + image_name4);
         file_uri4 = Uri.fromFile(file4);
 
-        file5 = new File(mFolder+File.separator+image_name5);
+        file5 = new File(mFolder + File.separator + image_name5);
         file_uri5 = Uri.fromFile(file5);
 
-        file6 = new File(mFolder+File.separator+image_name6);
+        file6 = new File(mFolder + File.separator + image_name6);
         file_uri6 = Uri.fromFile(file6);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(resultCode == RESULT_OK){
-            if(requestCode == REQUEST_IMG_NITROGEN1){
+        if (resultCode == RESULT_OK) {
+            if (requestCode == REQUEST_IMG_NITROGEN1) {
                 previewImageNitrogen1();
             }
 
-            if(requestCode == REQUEST_IMG_NITROGEN2){
+            if (requestCode == REQUEST_IMG_NITROGEN2) {
                 previewImageNitrogen2();
             }
 
-            if(requestCode == REQUEST_IMG_NITROGEN3){
+            if (requestCode == REQUEST_IMG_NITROGEN3) {
                 previewImageNitrogen3();
             }
 
-            if(requestCode == REQUEST_IMG_NITROGEN4){
+            if (requestCode == REQUEST_IMG_NITROGEN4) {
                 previewImageNitrogen4();
             }
 
-            if(requestCode == REQUEST_IMG_NITROGEN5){
+            if (requestCode == REQUEST_IMG_NITROGEN5) {
                 previewImageNitrogen5();
             }
 
-            if(requestCode == REQUEST_IMG_NITROGEN6){
+            if (requestCode == REQUEST_IMG_NITROGEN6) {
                 previewImageNitrogen6();
             }
 
-        } else if(resultCode == RESULT_CANCELED){
+        } else if (resultCode == RESULT_CANCELED) {
 
         } else {
             // failed to capture image
@@ -245,7 +282,7 @@ public class NitrogenActivity extends AppCompatActivity {
 
     }
 
-    private void previewImageNitrogen1(){
+    private void previewImageNitrogen1() {
         try {
 
             // bimatp factory
@@ -263,7 +300,7 @@ public class NitrogenActivity extends AppCompatActivity {
         }
     }
 
-    private void previewImageNitrogen2(){
+    private void previewImageNitrogen2() {
         try {
             // bimatp factory
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -280,7 +317,7 @@ public class NitrogenActivity extends AppCompatActivity {
         }
     }
 
-    private void previewImageNitrogen3(){
+    private void previewImageNitrogen3() {
         try {
             // bimatp factory
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -297,7 +334,7 @@ public class NitrogenActivity extends AppCompatActivity {
         }
     }
 
-    private void previewImageNitrogen4(){
+    private void previewImageNitrogen4() {
         try {
             // bimatp factory
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -314,7 +351,7 @@ public class NitrogenActivity extends AppCompatActivity {
         }
     }
 
-    private void previewImageNitrogen5(){
+    private void previewImageNitrogen5() {
         try {
             // bimatp factory
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -331,7 +368,7 @@ public class NitrogenActivity extends AppCompatActivity {
         }
     }
 
-    private void previewImageNitrogen6(){
+    private void previewImageNitrogen6() {
         try {
             // bimatp factory
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -349,40 +386,38 @@ public class NitrogenActivity extends AppCompatActivity {
     }
 
 
-    private void cropImage(Bitmap srcBmp){
-        if (srcBmp.getWidth() >= srcBmp.getHeight()){
+    private void cropImage(Bitmap srcBmp) {
+        if (srcBmp.getWidth() >= srcBmp.getHeight()) {
 
             imgSrc = Bitmap.createBitmap(
                     srcBmp,
-                    srcBmp.getWidth()/2 - srcBmp.getHeight()/2,
+                    srcBmp.getWidth() / 2 - srcBmp.getHeight() / 2,
                     0,
                     srcBmp.getHeight(),
                     srcBmp.getHeight()
             );
 
-        }else{
+        } else {
 
             imgSrc = Bitmap.createBitmap(
                     srcBmp,
                     0,
-                    srcBmp.getHeight()/2 - srcBmp.getWidth()/2,
+                    srcBmp.getHeight() / 2 - srcBmp.getWidth() / 2,
                     srcBmp.getWidth(),
                     srcBmp.getWidth()
             );
         }
     }
 
-    private void getRGB(){
+    private void getRGB() {
         Bitmap bitmap = bmpNitrogen1; //assign your bitmap here
         long redColors = 0;
         long greenColors = 0;
         long blueColors = 0;
         long pixelCount = 0;
 
-        for (int y = 0; y < bitmap.getHeight(); y++)
-        {
-            for (int x = 0; x < bitmap.getWidth(); x++)
-            {
+        for (int y = 0; y < bitmap.getHeight(); y++) {
+            for (int x = 0; x < bitmap.getWidth(); x++) {
                 int c = bitmap.getPixel(x, y);
                 pixelCount++;
                 redColors += Color.red(c);
@@ -391,15 +426,16 @@ public class NitrogenActivity extends AppCompatActivity {
             }
         }
         // calculate average of bitmap r,g,b values
-        long red = (redColors/pixelCount);
-        long green = (greenColors/pixelCount);
-        long blue = (blueColors/pixelCount);
+        long red = (redColors / pixelCount);
+        long green = (greenColors / pixelCount);
+        long blue = (blueColors / pixelCount);
 
         String rgbHex = String.format("%02x%02x%02x", red, green, blue).toUpperCase();
 
 
-
-        Toast.makeText(this, "R = "+red+"; G = "+green+"; B = "+blue, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "R = " + red + "; G = " + green + "; B = " + blue, Toast.LENGTH_LONG).show();
         Toast.makeText(this, rgbHex, Toast.LENGTH_LONG).show();
     }
+
+
 }
