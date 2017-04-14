@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.anandarherdianto.dinaspangan.utilitas.MyAlgorithm;
 import com.anandarherdianto.dinaspangan.utilitas.NitrogenImageDialogBox;
 
 import java.io.File;
@@ -27,14 +28,8 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
     private Bitmap bmpNitrogen1, bmpNitrogen2, bmpNitrogen3,
             bmpNitrogen4, bmpNitrogen5, bmpNitrogen6, imgSrc;
 
-    private String image_name1, image_name2, image_name3,
-            image_name4, image_name5, image_name6;
-
     private Uri file_uri1, file_uri2, file_uri3,
             file_uri4, file_uri5, file_uri6;
-
-    private File file1, file2, file3,
-            file4, file5, file6;
 
     static final int REQUEST_IMG_NITROGEN1 = 101;
     static final int REQUEST_IMG_NITROGEN2 = 102;
@@ -42,8 +37,6 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
     static final int REQUEST_IMG_NITROGEN4 = 104;
     static final int REQUEST_IMG_NITROGEN5 = 105;
     static final int REQUEST_IMG_NITROGEN6 = 106;
-
-    private Button btnProses;
 
     private NitrogenImageDialogBox dialog;
 
@@ -63,7 +56,7 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
         imgNitrogen5 = (ImageView) findViewById(R.id.imgNitrogen5);
         imgNitrogen6 = (ImageView) findViewById(R.id.imgNitrogen6);
 
-        btnProses = (Button) findViewById(R.id.btnProses);
+        Button btnProses = (Button) findViewById(R.id.btnProses);
 
         dialog = new NitrogenImageDialogBox();
 
@@ -120,9 +113,7 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
             public void onClick(View v) {
                 if (imgStatus1 && imgStatus2 && imgStatus3 && imgStatus4 && imgStatus5
                         && imgStatus6) {
-                    Toast.makeText(getApplicationContext(),
-                            "Gambar oke!", Toast.LENGTH_SHORT)
-                            .show();
+
                 } else {
                     Toast.makeText(getApplicationContext(),
                             "Ambil gambar sampel terlebih dahulu!", Toast.LENGTH_SHORT)
@@ -142,7 +133,6 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
 
 
     public void camera1() {
-
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         getFileUri();
         intent.putExtra(MediaStore.EXTRA_OUTPUT, file_uri1);
@@ -217,12 +207,12 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
     }
 
     private void getFileUri() {
-        image_name1 = "imgNitrogen1.jpg";
-        image_name2 = "imgNitrogen2.jpg";
-        image_name3 = "imgNitrogen3.jpg";
-        image_name4 = "imgNitrogen4.jpg";
-        image_name5 = "imgNitrogen5.jpg";
-        image_name6 = "imgNitrogen6.jpg";
+        String image_name1 = "imgNitrogen1.jpg";
+        String image_name2 = "imgNitrogen2.jpg";
+        String image_name3 = "imgNitrogen3.jpg";
+        String image_name4 = "imgNitrogen4.jpg";
+        String image_name5 = "imgNitrogen5.jpg";
+        String image_name6 = "imgNitrogen6.jpg";
 
         String extr = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
         File mFolder = new File(extr + "/Dinas");
@@ -230,22 +220,22 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
             mFolder.mkdir();
         }
 
-        file1 = new File(mFolder + File.separator + image_name1);
+        File file1 = new File(mFolder + File.separator + image_name1);
         file_uri1 = Uri.fromFile(file1);
 
-        file2 = new File(mFolder + File.separator + image_name2);
+        File file2 = new File(mFolder + File.separator + image_name2);
         file_uri2 = Uri.fromFile(file2);
 
-        file3 = new File(mFolder + File.separator + image_name3);
+        File file3 = new File(mFolder + File.separator + image_name3);
         file_uri3 = Uri.fromFile(file3);
 
-        file4 = new File(mFolder + File.separator + image_name4);
+        File file4 = new File(mFolder + File.separator + image_name4);
         file_uri4 = Uri.fromFile(file4);
 
-        file5 = new File(mFolder + File.separator + image_name5);
+        File file5 = new File(mFolder + File.separator + image_name5);
         file_uri5 = Uri.fromFile(file5);
 
-        file6 = new File(mFolder + File.separator + image_name6);
+        File file6 = new File(mFolder + File.separator + image_name6);
         file_uri6 = Uri.fromFile(file6);
     }
 
@@ -278,7 +268,7 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
             }
 
         } else if (resultCode == RESULT_CANCELED) {
-
+                //cancel by user
         } else {
             // failed to capture image
             Toast.makeText(getApplicationContext(),
@@ -291,6 +281,8 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
     private void previewImageNitrogen1() {
         try {
 
+            MyAlgorithm my = new MyAlgorithm();
+
             // bimatp factory
             BitmapFactory.Options options = new BitmapFactory.Options();
 
@@ -301,6 +293,10 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
             bmpNitrogen1 = BitmapFactory.decodeFile(file_uri1.getPath(), options);
 
             imgNitrogen1.setImageBitmap(bmpNitrogen1);
+
+            my.proses(getRGB(bmpNitrogen1));
+
+            Toast.makeText(this, my.getResultLevel(), Toast.LENGTH_LONG).show();
 
             imgStatus1 = true;
         } catch (NullPointerException e) {
@@ -427,16 +423,15 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
         }
     }
 
-    private void getRGB() {
-        Bitmap bitmap = bmpNitrogen1; //assign your bitmap here
+    private int[] getRGB(Bitmap img) {
         long redColors = 0;
         long greenColors = 0;
         long blueColors = 0;
         long pixelCount = 0;
 
-        for (int y = 0; y < bitmap.getHeight(); y++) {
-            for (int x = 0; x < bitmap.getWidth(); x++) {
-                int c = bitmap.getPixel(x, y);
+        for (int y = 0; y < img.getHeight(); y++) {
+            for (int x = 0; x < img.getWidth(); x++) {
+                int c = img.getPixel(x, y);
                 pixelCount++;
                 redColors += Color.red(c);
                 greenColors += Color.green(c);
@@ -450,9 +445,10 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
 
         String rgbHex = String.format("%02x%02x%02x", red, green, blue).toUpperCase();
 
+        return new int[]{(int) red, (int) green, (int) blue};
 
-        Toast.makeText(this, "R = " + red + "; G = " + green + "; B = " + blue, Toast.LENGTH_LONG).show();
-        Toast.makeText(this, rgbHex, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "R = " + red + "; G = " + green + "; B = " + blue, Toast.LENGTH_LONG).show();
+       // Toast.makeText(this, rgbHex, Toast.LENGTH_LONG).show();
     }
 
 
