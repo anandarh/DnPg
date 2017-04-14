@@ -45,7 +45,10 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
 
     private Button btnProses;
 
-    NitrogenImageDialogBox dialog;
+    private NitrogenImageDialogBox dialog;
+
+    private boolean imgStatus1, imgStatus2, imgStatus3,
+                    imgStatus4, imgStatus5, imgStatus6  = false;
 
 
     @Override
@@ -115,11 +118,14 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
         btnProses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!Uri.EMPTY.equals(file_uri1)) {
-                    getRGB();
+                if (imgStatus1 && imgStatus2 && imgStatus3 && imgStatus4 && imgStatus5
+                        && imgStatus6) {
+                    Toast.makeText(getApplicationContext(),
+                            "Gambar oke!", Toast.LENGTH_SHORT)
+                            .show();
                 } else {
                     Toast.makeText(getApplicationContext(),
-                            "Ambil gambar dulu!", Toast.LENGTH_SHORT)
+                            "Ambil gambar sampel terlebih dahulu!", Toast.LENGTH_SHORT)
                             .show();
                 }
             }
@@ -295,6 +301,8 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
             bmpNitrogen1 = BitmapFactory.decodeFile(file_uri1.getPath(), options);
 
             imgNitrogen1.setImageBitmap(bmpNitrogen1);
+
+            imgStatus1 = true;
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -312,6 +320,8 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
             final Bitmap bitmap = BitmapFactory.decodeFile(file_uri2.getPath(), options);
 
             imgNitrogen2.setImageBitmap(bitmap);
+
+            imgStatus2 = true;
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -329,6 +339,8 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
             final Bitmap bitmap = BitmapFactory.decodeFile(file_uri3.getPath(), options);
 
             imgNitrogen3.setImageBitmap(bitmap);
+
+            imgStatus3 = true;
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -346,6 +358,8 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
             final Bitmap bitmap = BitmapFactory.decodeFile(file_uri4.getPath(), options);
 
             imgNitrogen4.setImageBitmap(bitmap);
+
+            imgStatus4 = true;
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -363,6 +377,8 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
             final Bitmap bitmap = BitmapFactory.decodeFile(file_uri5.getPath(), options);
 
             imgNitrogen5.setImageBitmap(bitmap);
+
+            imgStatus5 = true;
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -380,6 +396,8 @@ public class NitrogenActivity extends AppCompatActivity implements NitrogenImage
             final Bitmap bitmap = BitmapFactory.decodeFile(file_uri6.getPath(), options);
 
             imgNitrogen6.setImageBitmap(bitmap);
+
+            imgStatus6 = true;
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
